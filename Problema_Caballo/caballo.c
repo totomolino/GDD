@@ -1,15 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include <list.h>
 
 typedef struct{
     int posX;
     int posY;
-}t_caballo;
+}t_pos;
 
-t_caballo* iniciarCaballo(int seleccion);
+t_pos* iniciarCaballo(int seleccion);
 
-void algoritmo(t_caballo* unCaballo, int** tablero);
+void algoritmo(t_pos* unCaballo, int** tablero);
 
 
 int tableroCompleto(int tablero[8][8]);
@@ -39,9 +40,9 @@ int main(){
     printf("Eliga uno de los cuatro vertices (1- 0|0 , 2- 0|7 , 3- 7|7 , 4- 7|0 )");
     scanf("%d", &seleccion);
 
-    t_caballo* unCaballo = iniciarCaballo(seleccion);
+    t_pos* posCaballo = iniciarCaballo(seleccion);
 
-    marcarTablero(unCaballo->posX,unCaballo->posY, tablero);
+    marcarTablero(posCaballo->posX,posCaballo->posY, tablero);
 
     mostrarTablero(tablero);
 
@@ -56,7 +57,7 @@ int main(){
 
 }
 
-t_caballo* iniciarCaballo(int seleccion){
+t_pos* iniciarCaballo(int seleccion){
     int posX,posY;
 
     if(seleccion == 4){
@@ -76,20 +77,20 @@ t_caballo* iniciarCaballo(int seleccion){
         posY = 0;
     }
 
-    t_caballo* unCaballo = malloc(sizeof(t_caballo));
+    t_pos* posCaballo = malloc(sizeof(t_pos));
 
-    unCaballo->posX = posX;
-    unCaballo->posY = posY;
+    posCaballo->posX = posX;
+    posCaballo->posY = posY;
 
 
 
-    return unCaballo;
+    return posCaballo;
 
 }
 
-void algoritmo(t_caballo* unCaballo, int** tablero){
+void algoritmo(t_pos* posCaballo, int** tablero){
 
-
+    t_pos* sigPos = nextMove(posCaballo, tablero);
 
 
 }
@@ -128,5 +129,11 @@ void mostrarTablero(int tablero[8][8]){
 void marcarTablero(int posX, int posY, int tablero[8][8]){
 
     tablero[posX][posY] = 1;
+
+}
+
+t_pos* nextMove(t_pos* posCaballo, int tablero [8][8]){
+
+
 
 }
