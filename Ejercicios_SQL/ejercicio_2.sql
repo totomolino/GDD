@@ -1,0 +1,1 @@
+select prod_codigo,prod_detalle from Producto order by 
