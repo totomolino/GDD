@@ -14,6 +14,10 @@ void algoritmo(t_caballo* unCaballo, int** tablero);
 
 int tableroCompleto(int tablero[8][8]);
 
+void mostrarTablero(int tablero[8][8]);
+
+void marcarTablero(int posX, int posY, int tablero[8][8]);
+
 
 int main(){
 
@@ -30,39 +34,22 @@ int main(){
     {0,0,0,0,0,0,0,0}
     };
 
-    int tablero2[8][8] = {
-    {1,1,1,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0}
-    };
-    
-    int tablero3[8][8] = {
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1},
-    {1,1,1,1,1,1,1,1}
-    };
-/*
+    mostrarTablero(tablero);
+
     printf("Eliga uno de los cuatro vertices (1- 0|0 , 2- 0|7 , 3- 7|7 , 4- 7|0 )");
     scanf("%d", &seleccion);
 
     t_caballo* unCaballo = iniciarCaballo(seleccion);
 
-    algoritmo(unCaballo,tablero);
-*/  
-    
-    printf("Tablero 1 : %d \n", tableroCompleto(tablero));
-    printf("Tablero 2 : %d \n", tableroCompleto(tablero2));
-    printf("Tablero 3 : %d \n", tableroCompleto(tablero3));
+    marcarTablero(unCaballo->posX,unCaballo->posY, tablero);
+
+    mostrarTablero(tablero);
+
+    //algoritmo(unCaballo,tablero);
+
+
+
+
     return 0;
 
 
@@ -94,6 +81,8 @@ t_caballo* iniciarCaballo(int seleccion){
     unCaballo->posX = posX;
     unCaballo->posY = posY;
 
+
+
     return unCaballo;
 
 }
@@ -107,7 +96,7 @@ void algoritmo(t_caballo* unCaballo, int** tablero){
 
 
 int tableroCompleto(int tablero[8][8]){
-
+    
     for(int i = 0 ; i < 8 ; i++){
 
         for(int u = 0; u < 8 ; u++){
@@ -120,5 +109,24 @@ int tableroCompleto(int tablero[8][8]){
     }
 
     return 1;
+
+}
+
+void mostrarTablero(int tablero[8][8]){
+    printf("TABLERO: \n");
+    for(int i = 0 ; i < 8 ; i++){
+
+        for(int u = 0; u < 8 ; u++){
+            printf(" %d ",tablero[i][u]);
+        }
+        printf("\n");
+
+    }
+
+}
+
+void marcarTablero(int posX, int posY, int tablero[8][8]){
+
+    tablero[posX][posY] = 1;
 
 }
